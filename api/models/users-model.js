@@ -12,7 +12,11 @@ var userSchema = new Schema({
         required: true
     },
     firstname: String,
-    lastname: String
+    lastname: String,
+    isActive: {
+        type: Boolean,
+        "default": false
+    }
 });
 
 mongoose.model('User', userSchema);

@@ -53,28 +53,30 @@ module.exports.login = function (req, res) {
     User.findOne({
         email: email
     }).exec(function (err, user) {
-        console.log(user);
-
         if(err){
             console.log(err);
             res.status(400).json(err);
         } else if(user === null) {
             res.status(400).json({'message': 'User is not exist.'});
         } else {
-            if(bcrypt.compareSync(password, user.password)) {
-                console.log('User found', user);
+            // if(user.isActive === false) {
+            //     res.status(403).json({'message': 'User is not active'});
+            // } else {
+                if(bcrypt.compareSync(password, user.password)) {
+                    console.log('User found', user);
 
-                var token = jwt.sign({email: email}, 's3cr3t', {expiresIn: 3600});
-                var userData = {
-                    email: user.email,
-                    firstname: user.firstname,
-                    lastname: user.lastname
-                };
+                    var token = jwt.sign({email: email}, 's3cr3t', {expiresIn: 3600});
+                    var userData = {
+                        email: user.email,
+                        firstname: user.firstname,
+                        lastname: user.lastname
+                    };
 
-                res.status(200).json({success: true, token: token, user: userData});
-            } else {
-                res.status(401).json({"message": "unauthorize"});
-            }
+                    res.status(200).json({success: true, token: token, user: userData});
+                } else {
+                    res.status(401).json({"message": "unauthorize"});
+                }
+            // }
         }
     })
 };
