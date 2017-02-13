@@ -8,25 +8,27 @@ var jwt = require('jsonwebtoken');
 module.exports.register = function (req, res) {
     console.log('registering user');
 
-    var username = req.body.username;
-    var name = req.body.name || null;
+    var email = req.body.email;
     var password = req.body.password;
+    var firstname = req.body.firstname || null;
+    var lastname = req.body.lastname || null;
 
     User.findOne({
-        username: username
+        email: email
     }).exec(function (err, registeredUser) {
         if(err) {
             console.log(err);
             res.status(400).json(err);
         } else {
             if (registeredUser) {
-                res.status(401).json({"message": "Username already exist." });
+                res.status(401).json({"message": "E-mail already exist." });
             } else {
                 User
                     .create({
-                        username: username,
+                        email: email,
                         password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) ,
-                        name: name
+                        firstname: firstname,
+                        lastname: lastname
                     }, function (err, user) {
                         if(err){
                             console.log(err);
@@ -45,23 +47,28 @@ module.exports.register = function (req, res) {
 module.exports.login = function (req, res) {
     console.log('login user');
 
-    var username = req.body.username;
+    var email = req.body.email;
     var password = req.body.password;
 
     User.findOne({
-        username: username
+        email: email
     }).exec(function (err, user) {
+        console.log(user);
+
         if(err){
             console.log(err);
             res.status(400).json(err);
+        } else if(user === null) {
+            res.status(400).json({'message': 'User is not exist.'});
         } else {
             if(bcrypt.compareSync(password, user.password)) {
                 console.log('User found', user);
 
-                var token = jwt.sign({username: username}, 's3cr3t', {expiresIn: 3600});
+                var token = jwt.sign({email: email}, 's3cr3t', {expiresIn: 3600});
                 var userData = {
-                    username: user.username,
-                    name: user.name
+                    email: user.email,
+                    firstname: user.firstname,
+                    lastname: user.lastname
                 };
 
                 res.status(200).json({success: true, token: token, user: userData});
@@ -94,7 +101,7 @@ module.exports.authenticate = function (req, res, next) {
                 console.log(error);
                 res.status(401).json('Unauthorized');
             } else {
-                req.user = decoded.username;
+                req.user = decoded.email;
                 next();
             }
         })
@@ -102,7 +109,3 @@ module.exports.authenticate = function (req, res, next) {
         res.status(403).json('No token provided');
     }
 };
-
-module.exports.getUser = function (req, res) {
-
-}
