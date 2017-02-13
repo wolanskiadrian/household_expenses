@@ -12,20 +12,34 @@ module.exports.register = function (req, res) {
     var name = req.body.name || null;
     var password = req.body.password;
 
-    User
-        .create({
-            username: username,
-            password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) ,
-            name: name
-        }, function (err, user) {
-            if(err){
-                console.log(err);
-                res.status(400).json(err)
+    User.findOne({
+        username: username
+    }).exec(function (err, registeredUser) {
+        if(err) {
+            console.log(err);
+            res.status(400).json(err);
+        } else {
+            if (registeredUser) {
+                res.status(401).json({"message": "Username already exist." });
             } else {
-                console.log('user created', user);
-                res.status(201).json(user);
+                User
+                    .create({
+                        username: username,
+                        password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) ,
+                        name: name
+                    }, function (err, user) {
+                        if(err){
+                            console.log(err);
+                            res.status(400).json(err)
+                        } else {
+                            console.log('user created', user);
+                            res.status(201).json(user);
+                        }
+                    });
             }
-        });
+        }
+    });
+
 };
 
 module.exports.login = function (req, res) {
