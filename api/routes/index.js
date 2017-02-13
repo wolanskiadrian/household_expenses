@@ -1,0 +1,20 @@
+var express = require('express');
+var router = express.Router();
+
+var ctrlUsers = require('../controllers/users-controller');
+
+//Auth
+router
+    .route('/users/register')
+    .post(ctrlUsers.register);
+
+router
+    .route('/users/login')
+    .post(ctrlUsers.login);
+
+router
+    .route('/users')
+    .get(ctrlUsers.getUsers);
+
+
+module.exports = router;
