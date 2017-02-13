@@ -59,8 +59,12 @@ module.exports.login = function (req, res) {
                 console.log('User found', user);
 
                 var token = jwt.sign({username: username}, 's3cr3t', {expiresIn: 3600});
+                var userData = {
+                    username: user.username,
+                    name: user.name
+                };
 
-                res.status(200).json({success: true, token: token});
+                res.status(200).json({success: true, token: token, user: userData});
             } else {
                 res.status(401).json({"message": "unauthorize"});
             }
@@ -98,3 +102,7 @@ module.exports.authenticate = function (req, res, next) {
         res.status(403).json('No token provided');
     }
 };
+
+module.exports.getUser = function (req, res) {
+
+}

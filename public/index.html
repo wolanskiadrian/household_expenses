@@ -7,6 +7,21 @@
 </head>
 <body>
 
-    <h1>Household Expenses App - hello</h1>
+    <div ng-view></div>
+
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/auth/auth-interceptor.js"></script>
+
+    <!--Services-->
+    <script src="app/auth/auth-factory.js"></script>
+
+    <!--Controllers-->
+    <script src="app/dashboard/dashboard-controller.js"></script>
+    <script src="app/login/login-controller.js"></script>
+    <script src="app/register/register-controller.js"></script>
 </body>
 </html>
