@@ -211,8 +211,6 @@ module.exports.getUsers = function (req, res) {
         })
 };
 
-
-//TODO: check authenticate method o new registry user method
 module.exports.authenticate = function (req, res, next) {
     var headerExists = req.headers.autorization;
     if(headerExists) {

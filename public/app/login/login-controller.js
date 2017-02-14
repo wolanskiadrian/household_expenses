@@ -16,7 +16,7 @@ function LoginController($http, $location, $window, AuthFactory) {
     vm.login = function () {
         if(vm.username && vm.password) {
             var user = {
-                username: vm.username,
+                email: vm.email,
                 password: vm.password
             };
 
