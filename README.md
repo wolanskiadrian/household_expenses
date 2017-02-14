@@ -1,3 +1,3 @@
-Household Expenses - app
+#Household Expenses - app
 
-meanstack
+training app

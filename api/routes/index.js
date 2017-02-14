@@ -16,5 +16,13 @@ router
     .route('/users')
     .get(ctrlUsers.getUsers);
 
+router
+    .route('/email-verification/:URL')
+    .get(ctrlUsers.confirmAccount);
+
+router
+    .route('/auth/resend-ve')
+    .post(ctrlUsers.resendVerificationEmail);
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var bcrypt = require('bcryptjs');
 
 var userSchema = new Schema({
     email: {
@@ -12,12 +13,12 @@ var userSchema = new Schema({
         required: true
     },
     firstname: String,
-    lastname: String,
-    isActive: {
-        type: Boolean,
-        "default": false
-    }
+    lastname: String
 });
+
+userSchema.methods.validPassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
+};
 
 mongoose.model('User', userSchema);
 
