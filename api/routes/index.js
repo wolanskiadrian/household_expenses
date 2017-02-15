@@ -24,5 +24,15 @@ router
     .route('/auth/resend-ve')
     .post(ctrlUsers.resendVerificationEmail);
 
+router
+    .route('/users/change-password')
+    .post(ctrlUsers.changePassword);
+
+router
+    .route('/users/edit-profile')
+    .post(ctrlUsers.editProfile);
+
+// App endpoints
+
 
 module.exports = router;

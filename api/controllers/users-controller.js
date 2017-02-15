@@ -190,12 +190,82 @@ module.exports.login = function (req, res) {
                     lastname: user.lastname
                 };
 
-                res.status(200).json({success: true, token: token, user: userData});
+                res.status(200).json({success: true, id: user._id, token: token, user: userData});
             } else {
                 res.status(401).json({"message": "unauthorize"});
             }
         }
     })
+};
+
+module.exports.changePassword = function (req, res) {
+
+    var userId = req.body.userId;
+    var password = req.body.password;
+
+    User
+        .findById(userId)
+        .exec(function (err, user) {
+            if(err) {
+                console.log(err);
+                res.status(400).json(err);
+            } else if (user === null) {
+                console.log('user not found');
+                res.status(400).json({
+                    message: 'User is not exist.'
+                });
+            } else {
+                user.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+
+                user.save(function (err, userUpdated) {
+                    if(err) {
+                        console.log(err);
+                        res.status(400).json(err);
+                    } else {
+                        res.status(200).json({
+                            message: 'Password changed.'
+                        });
+                    }
+                })
+            }
+        });
+};
+
+module.exports.editProfile = function (req, res) {
+
+    var userId = req.body.userId;
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+
+    console.log(lastname);
+
+    User
+        .findById(userId)
+        .exec(function (err, user) {
+            if(err) {
+                console.log(err);
+                res.status(400).json(err);
+            } else if (user === null) {
+                console.log('user not found');
+                res.status(400).json({
+                    message: 'User is not exist.'
+                });
+            } else {
+                user.firstname = firstname;
+                user.lastname = lastname;
+
+                user.save(function (err, userUpdated) {
+                    if(err) {
+                        console.log(err);
+                        res.status(400).json(err);
+                    } else {
+                        res.status(200).json({
+                            message: 'Profile edited.'
+                        });
+                    }
+                })
+            }
+        });
 };
 
 module.exports.getUsers = function (req, res) {
