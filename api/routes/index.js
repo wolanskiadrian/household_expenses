@@ -32,6 +32,14 @@ router
     .route('/users/edit-profile')
     .post(ctrlUsers.editProfile);
 
+router
+    .route('/users/forgot')
+    .post(ctrlUsers.forgotPasswordEmail);
+
+router
+    .route('/users/reset-password/:token')
+    .post(ctrlUsers.resetPassword);
+
 // App endpoints
 
 

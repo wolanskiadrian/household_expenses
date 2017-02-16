@@ -4,13 +4,12 @@ var User = mongoose.model('User');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var nev = require('email-verification')(mongoose);
+var nodemailer = require('nodemailer');
 
 var myHasher = function(password, tempUserData, insertTempUser, callback) {
     var hash = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     return insertTempUser(hash, tempUserData, callback);
 };
-
-
 
 nev.configure({
     verificationURL: 'http://localhost:1337/api/email-verification/${URL}',
@@ -93,36 +92,6 @@ module.exports.register = function (req, res) {
             }
         }
     });
-    
-    // User.findOne({
-    //     email: email
-    // }).exec(function (err, registeredUser) {
-    //     if(err) {
-    //         console.log(err);
-    //         res.status(400).json(err);
-    //     } else {
-    //         if (registeredUser) {
-    //             res.status(401).json({"message": "E-mail already exist." });
-    //         } else {
-    //             User
-    //                 .create({
-    //                     email: email,
-    //                     password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) ,
-    //                     firstname: firstname,
-    //                     lastname: lastname
-    //                 }, function (err, user) {
-    //                     if(err){
-    //                         console.log(err);
-    //                         res.status(400).json(err)
-    //                     } else {
-    //                         console.log('user created', user);
-    //                         res.status(201).json(user);
-    //                     }
-    //                 });
-    //         }
-    //     }
-    // });
-
 };
 
 module.exports.resendVerificationEmail = function (req, res) {
@@ -298,3 +267,120 @@ module.exports.authenticate = function (req, res, next) {
         res.status(403).json('No token provided');
     }
 };
+
+
+// password reset
+
+module.exports.forgotPasswordEmail = function (req, res) {
+    var email = req.body.email;
+    var token = bcrypt.hashSync(email, bcrypt.genSaltSync(8), null);
+
+    User.findOne({
+        email: email
+    }).exec(function (err, user) {
+        if(err) {
+            console.log(err);
+            res.status(400).json(err);
+        } else if (!user) {
+            res.status(403).json({
+                message: 'User is not exist'
+            });
+        } else {
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = Date.now() + 3600000;
+
+            user.save(function (err, updatedUser) {
+                if(err) {
+                    console.log(err);
+                    res.status(400).json(err);
+                } else {
+                    var poolConfig = 'smtp://hhs.application%40gmail.com:lubieplacki1@smtp.gmail.com/?pool=true';
+                    var smtpTransport = nodemailer.createTransport(poolConfig);
+                    var mailOptions = {
+                        to: user.email,
+                        from: 'hhs.application@gmail.com',
+                        subject: 'Household expenses - reset password email',
+                        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                        'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                    };
+
+                    smtpTransport.sendMail(mailOptions, function(err) {
+                        if(err) {
+                            console.log(err);
+                            res.status(400).json(err);
+                        } else {
+                            res.status(200).json({
+                                message: 'An e-mail has been sent to ' + email + ' with further instructions.'
+                            })
+                        }
+                    });
+                }
+            })
+        }
+    })
+
+};
+
+module.exports.resetPassword = function (req, res) {
+    var token = req.params.token;
+    var password = req.body.password;
+    var confirm = req.body.password;
+
+    User.findOne({
+        resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() }
+    }).exec(function (err, user) {
+        if(err) {
+            console.log(err);
+            res.status(400).json(err);
+        } else if(!user){
+            res.status(400).json({
+                message: 'Password reset token is invalid or has expired.'
+            });
+        } else {
+            if(password !== confirm) {
+                res.status(400).json({
+                    message: 'Password do not match'
+                })
+            } else {
+                user.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                user.resetPasswordExpires = undefined;
+                user.resetPasswordToken = undefined;
+
+                user.save(function (err, userUpdated) {
+                    if(err) {
+                        console.log(err);
+                        res.status(400).json(err);
+                    } else {
+                        var poolConfig = 'smtp://hhs.application%40gmail.com:lubieplacki1@smtp.gmail.com/?pool=true';
+                        var smtpTransport = nodemailer.createTransport(poolConfig);
+                        var mailOptions = {
+                            to: user.email,
+                            from: 'hhs.application@gmail.com',
+                            subject: 'Household expenses - Your password has been changed',
+                            text: 'Hello,\n\n' +
+                            'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+                        };
+
+                        smtpTransport.sendMail(mailOptions, function(err) {
+                            if(err) {
+                                console.log(err);
+                                res.status(400).json(err);
+                            } else {
+                                res.status(200).json({
+                                    message: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
+                                })
+                            }
+                        });
+
+                        res.status(200).json({
+                            message: 'Password changed.'
+                        });
+                    }
+                });
+            }
+        }
+    })
+};
+

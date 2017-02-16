@@ -13,7 +13,9 @@ var userSchema = new Schema({
         required: true
     },
     firstname: String,
-    lastname: String
+    lastname: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 userSchema.methods.validPassword = function (password) {
