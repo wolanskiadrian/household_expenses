@@ -50,6 +50,7 @@ router
 router
     .route('/expense/:expenseId')
     .post(ctrlExpense.edit)
-    .get(ctrlExpense.get);
+    .get(ctrlExpense.get)
+    .delete(ctrlExpense.delete);
 
 module.exports = router;

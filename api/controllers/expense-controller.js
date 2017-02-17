@@ -87,3 +87,24 @@ module.exports.get = function (req, res) {
             }
         })
 };
+
+module.exports.delete = function (req, res) {
+    var expenseId = req.params.expenseId;
+
+    Expense
+        .findByIdAndRemove(expenseId)
+        .exec(function (err, expense) {
+            if(err) {
+                res
+                    .status(404)
+                    .json(err);
+            } else {
+                res
+                    .status(204)
+                    .json({
+                        message: 'Expense deleted'
+                    });
+            }
+        });
+
+};
