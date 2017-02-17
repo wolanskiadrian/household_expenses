@@ -1,9 +1,11 @@
 angular.module('hhsApp').controller('RegisterController', RegisterController);
 
-RegisterController.$inject = ['$http'];
+RegisterController.$inject = ['RegisterService'];
 
-function RegisterController($http) {
+function RegisterController(RegisterService) {
     var vm = this;
+    vm.errorMessage = null;
+    vm.message = null;
 
     vm.register = function () {
         var user = {
@@ -12,19 +14,20 @@ function RegisterController($http) {
         };
 
         if(!vm.username || !vm.password) {
-            vm.error = 'Please add a username and password.'
+            vm.errorMessage = 'Please add a username and password.'
         } else {
             if(vm.password !== vm.passwordRepeat) {
                 vm.error = 'Please make sure the passwords match.'
             } else {
-                $http.post('/api/users/register', user).then(function (res) {
-                    console.log(res);
-
-                    vm.message = 'New user was added.';
-                    vm.error = null;
-                }).catch(function (error) {
-                    console.log(error);
-                })
+                RegisterService.register(vm.username, vm.password)
+                    .then(function (res) {
+                        vm.errorMessage = null;
+                        vm.message = 'New user was added.';
+                        console.log(res);
+                    }).catch(function (err) {
+                        vm.errorMessage = err;
+                        console.log(err);
+                    });
             }
         }
     };

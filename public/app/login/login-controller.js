@@ -1,9 +1,10 @@
 angular.module('hhsApp').controller('LoginController', LoginController);
 
-LoginController.$inject = ['$http', '$location', '$window', 'AuthFactory'];
+LoginController.$inject = ['$location', '$window', 'AuthFactory', 'LoginService'];
 
-function LoginController($http, $location, $window, AuthFactory) {
+function LoginController($location, $window, AuthFactory, LoginService) {
     var vm = this;
+    vm.errorMessage = null;
 
     vm.isLoggedIn = function () {
         if(AuthFactory.isLoggedIn) {
@@ -15,24 +16,22 @@ function LoginController($http, $location, $window, AuthFactory) {
 
     vm.login = function () {
         if(vm.username && vm.password) {
-            var user = {
-                email: vm.email,
-                password: vm.password
-            };
 
-            $http.post('/api/users/login', user).then(function (res) {
-                console.log(res);
-
-                if(res.data.success && res.data.token && res.data.user) {
-                    $window.sessionStorage.token = res.data.token;
-                    $window.sessionStorage.userData = res.data.user;
-                    AuthFactory.isLoggedIn = true;
-                }
-            }).catch(function (err) {
-                console.log(err)
-            });
+            LoginService.login(vm.username, vm.password)
+                .then(function (res) {
+                    if(res.data.success && res.data.token && res.data.user) {
+                        $window.sessionStorage.token = res.data.token;
+                        $window.sessionStorage.userData = res.data.user;
+                        AuthFactory.isLoggedIn = true;
+                        vm.errorMessage = null;
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                    vm.errorMessage = err;
+                });
         } else {
             //TODO: validation form message
+            vm.errorMessage = 'Password do not match.';
         }
     };
 
