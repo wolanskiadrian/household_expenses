@@ -27,6 +27,7 @@
     "email-verification": "^0.4.5",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.2.1",
+    "lodash": "^4.17.4",
     "mongodb": "^2.2.21",
     "mongoose": "^4.7.7",
     "nodemailer": "^3.1.1"
