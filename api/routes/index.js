@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var ctrlUsers = require('../controllers/users-controller');
+var ctrlExpense = require('../controllers/expense-controller');
 
 //Auth
 router
@@ -42,5 +43,13 @@ router
 
 // App endpoints
 
+router
+    .route('/expense')
+    .post(ctrlExpense.add);
+
+router
+    .route('/expense/:expenseId')
+    .post(ctrlExpense.edit)
+    .get(ctrlExpense.get);
 
 module.exports = router;
