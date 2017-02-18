@@ -29,13 +29,6 @@ module.exports.add = function (req, res) {
 module.exports.edit = function (req, res) {
     var expenseId = req.params.expenseId;
 
-    var categoryId = req.body.categoryId;
-    var amount = req.body.amount;
-    var description = req.body.description;
-    var vendor = req.body.vendor;
-    var expenseDate = req.body.expenseDate;
-    var userId = req.body.userId;
-
     Expense
         .findById(expenseId)
         .exec(function (err, expense) {

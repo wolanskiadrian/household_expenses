@@ -40,3 +40,4 @@ process.once('SIGUSR2', function () {
 
 require('../models/users-model.js');
 require('../models/expense-model');
+require('../models/category-model');

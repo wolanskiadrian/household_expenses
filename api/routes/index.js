@@ -3,6 +3,7 @@ var router = express.Router();
 
 var ctrlUsers = require('../controllers/users-controller');
 var ctrlExpense = require('../controllers/expense-controller');
+var ctrlCategories = require('../controllers/category-controller');
 
 //Auth
 router
@@ -52,5 +53,16 @@ router
     .post(ctrlExpense.edit)
     .get(ctrlExpense.get)
     .delete(ctrlExpense.delete);
+
+router
+    .route('/categories')
+    .get(ctrlCategories.getAll)
+    .post(ctrlCategories.add);
+
+router
+    .route('/categories/:categoryId')
+    .post(ctrlCategories.edit)
+    .get(ctrlCategories.get)
+    .delete(ctrlCategories.delete);
 
 module.exports = router;
