@@ -21,9 +21,11 @@ function LoginController($location, $window, AuthFactory, LoginService) {
                 .then(function (res) {
                     if(res.data.success && res.data.token && res.data.user) {
                         $window.sessionStorage.token = res.data.token;
-                        $window.sessionStorage.userData = res.data.user;
+                        $window.sessionStorage.userData = JSON.stringify(res.data.user);
                         AuthFactory.isLoggedIn = true;
                         vm.errorMessage = null;
+
+                        $location.path('/dashboard');
                     }
                 }).catch(function (err) {
                     console.log(err);

@@ -1,1 +1,22 @@
-<h1>Login</h1>
+<div class="container">
+    <div class="form-wrapper" style="width: 400px; margin: auto; padding: 20px; border: 1px solid #d3d3d3;">
+        <form ng-submit="vm.login()">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input type="email" class="form-control" placeholder="Email" ng-model="vm.username">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <input type="password" class="form-control" placeholder="Password" ng-model="vm.password">
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Login" style="margin: auto; display: block;"/>
+        </form>
+
+        <div style="text-align: center">
+            <p><a ng-href="/forgot">Forgot your password?</a></p>
+            <p>Don't have an account? <a ng-href="/register">Sing Up</a></p>
+        </div>
+    </div>
+</div>

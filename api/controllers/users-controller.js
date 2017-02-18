@@ -140,14 +140,17 @@ module.exports.login = function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
 
+    console.log(req.body);
+
     User.findOne({
         email: email
     }).exec(function (err, user) {
         if(err){
             console.log(err);
-            res.status(400).json(err);
+            res.status(500).json(err);
         } else if(user === null) {
-            res.status(400).json({'message': 'User is not exist.'});
+            console.log('User is not exist');
+            res.status(500).json({'message': 'User is not exist.'});
         } else {
             if(bcrypt.compareSync(password, user.password)) {
                 console.log('User found', user);

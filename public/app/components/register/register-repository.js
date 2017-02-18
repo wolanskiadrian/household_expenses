@@ -4,12 +4,7 @@ RegisterService.$inject = ['$http'];
 
 function RegisterService($http) {
 
-    this.register = function (email, password) {
-        var model = {
-            email: email,
-            password: password
-        };
-
+    this.register = function (model) {
         return $http.post('/api/users/register', model).then(function (res) {
             return res;
         }).catch(function (err) {

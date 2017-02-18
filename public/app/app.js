@@ -2,14 +2,14 @@ angular.module('hhsApp', ['ngRoute'])
     .config(config)
     .run(run);
 
-config.$inject = ['$routeProvider', '$httpProvider'];
+config.$inject = ['$routeProvider', '$httpProvider', '$locationProvider'];
 
-function config($routeProvider, $httpProvider) {
+function config($routeProvider, $httpProvider, $locationProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
 
     $routeProvider
         .when('/dashboard', {
-            templateUrl: 'app/dashboard/dashboard-view.html',
+            templateUrl: 'app/components/dashboard/dashboard-view.html',
             controller: DashboardController,
             controllerAs: 'vm',
             access: {
@@ -17,7 +17,7 @@ function config($routeProvider, $httpProvider) {
             }
         })
         .when('/login', {
-            templateUrl: 'app/login/login-view.html',
+            templateUrl: 'app/components/login/login-view.html',
             controller: LoginController,
             controllerAs: 'vm',
             access: {
@@ -25,7 +25,7 @@ function config($routeProvider, $httpProvider) {
             }
         })
         .when('/register', {
-            templateUrl: 'app/register/register-view.html',
+            templateUrl: 'app/components/register/register-view.html',
             controller: RegisterController,
             controllerAs: 'vm',
             access: {
@@ -33,7 +33,7 @@ function config($routeProvider, $httpProvider) {
             }
         })
         .when('/user/profile', {
-            templateUrl: 'app/profile/profile-view.html',
+            templateUrl: 'app/components/profile/profile-view.html',
             controller: ProfileController,
             controllerAs: 'vm',
             access: {
@@ -42,7 +42,9 @@ function config($routeProvider, $httpProvider) {
         })
         .otherwise({
             redirectTo: '/login'
-        })
+        });
+
+    $locationProvider.html5Mode(true);
 }
 
 function run($rootScope, $location, $window, AuthFactory) {
