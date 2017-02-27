@@ -2,4 +2,17 @@
 
 <p>User: {{vm.user.firstname}} {{vm.user.lastname}}</p>
 
+<h1>Wydatki</h1>
+
+<div ng-repeat="item in vm.expenses">
+    <ul class="list-group">
+        <li>Vendor: {{item.vendor}}</li>
+        <li>Amount: {{item.amount}}</li>
+        <li>CategoryId: {{item.categoryId}}</li>
+        <li>Expense Date: {{item.expenseDate}}</li>
+        <li>Description: {{item.description}}</li>
+    </ul>
+</div>
+
 <button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
+<button class="btn btn-primary" type="button" ng-click="vm.addExpense()">Add New Expense</button>

@@ -1,8 +1,8 @@
 angular.module('hhsApp').controller('LoginController', LoginController);
 
-LoginController.$inject = ['$location', '$window', 'AuthFactory', 'LoginService'];
+LoginController.$inject = ['$location', '$window', '$timeout', 'AuthFactory', 'LoginService'];
 
-function LoginController($location, $window, AuthFactory, LoginService) {
+function LoginController($location, $window, $timeout, AuthFactory, LoginService) {
     var vm = this;
     vm.errorMessage = null;
 
@@ -16,7 +16,6 @@ function LoginController($location, $window, AuthFactory, LoginService) {
 
     vm.login = function () {
         if(vm.username && vm.password) {
-
             LoginService.login(vm.username, vm.password)
                 .then(function (res) {
                     if(res.data.success && res.data.token && res.data.user) {
@@ -26,6 +25,11 @@ function LoginController($location, $window, AuthFactory, LoginService) {
                         vm.errorMessage = null;
 
                         $location.path('/dashboard');
+                    } else {
+                        vm.errorMessage = res.data.message;
+                        $timeout(function () {
+                            vm.errorMessage = null;
+                        }, 2000)
                     }
                 }).catch(function (err) {
                     console.log(err);
@@ -33,7 +37,7 @@ function LoginController($location, $window, AuthFactory, LoginService) {
                 });
         } else {
             //TODO: validation form message
-            vm.errorMessage = 'Password do not match.';
+            vm.errorMessage = '';
         }
     };
 
@@ -45,4 +49,7 @@ function LoginController($location, $window, AuthFactory, LoginService) {
         $location.path('#/login');
     };
 
+    vm.register = function () {
+        $location.path('/register');
+    }
 };

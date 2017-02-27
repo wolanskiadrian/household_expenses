@@ -159,10 +159,11 @@ module.exports.login = function (req, res) {
                 var userData = {
                     email: user.email,
                     firstname: user.firstname,
-                    lastname: user.lastname
+                    lastname: user.lastname,
+                    id: user._id
                 };
 
-                res.status(200).json({success: true, id: user._id, token: token, user: userData});
+                res.status(200).json({success: true, token: token, user: userData});
             } else {
                 res.status(401).json({"message": "unauthorize"});
             }

@@ -81,6 +81,25 @@ module.exports.get = function (req, res) {
         })
 };
 
+module.exports.getAll = function (req, res) {
+    var userId = req.params.userId;
+
+    Expense
+        .find({
+            user: userId
+        }).exec(function (err, expenses) {
+            if(err) {
+                console.log(err);
+                res.status(500).json(err);
+            } else if (!expenses) {
+                console.log('There is no expenses');
+                res.status(200).json([]);
+            } else {
+                res.status(200).json(expenses);
+            }
+        })
+};
+
 module.exports.delete = function (req, res) {
     var expenseId = req.params.expenseId;
 

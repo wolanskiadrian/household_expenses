@@ -49,6 +49,10 @@ router
     .post(ctrlExpense.add);
 
 router
+    .route('/expenses/:userId')
+    .get(ctrlExpense.getAll);
+
+router
     .route('/expense/:expenseId')
     .post(ctrlExpense.edit)
     .get(ctrlExpense.get)

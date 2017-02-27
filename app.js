@@ -25,6 +25,9 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
+// app.all('*', function (req, res, next) {
+//     res.sendFile('/public/index.html', {root: __dirname});
+// });
 
 app.use('/api', routes);
 
