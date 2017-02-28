@@ -40,6 +40,15 @@ function config($routeProvider, $httpProvider, $locationProvider) {
                 restricted: true
             }
         })
+        //expense
+        .when('/expense/add', {
+            templateUrl: 'app/components/expense/expense.add-view.html',
+            controller: ExpenseController,
+            controllerAs: 'vm',
+            access: {
+                restricted: true
+            }
+        })
         .otherwise({
             redirectTo: '/login'
         });

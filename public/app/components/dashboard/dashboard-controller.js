@@ -23,5 +23,9 @@ function DashboardController($window, $location, AuthFactory, DashboardService) 
         delete $window.sessionStorage.userData;
 
         $location.path('/login');
+    };
+
+    vm.addExpense = function () {
+        $location.path('/expense/add');
     }
 };
