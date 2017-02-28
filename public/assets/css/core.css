@@ -1,2 +1,6 @@
+@import url("public/app/components/dashboard/dashboard-style.scss");
+@import url("public/app/components/dashboard/login-style.scss");
+@import url("public/app/components/dashboard/profile-style.scss");
+@import url("public/app/components/dashboard/register-style.scss");
 body {
   font-family: Helvetica, Arial, sans-serif; }
