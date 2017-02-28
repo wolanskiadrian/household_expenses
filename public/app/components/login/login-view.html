@@ -1,17 +1,14 @@
-<div class="container">
-    <div class="form-wrapper" style="width: 400px; margin: auto; padding: 20px; border: 1px solid #d3d3d3;">
+<div class="login">
+    <div class="login_background"></div>
+    <div class="form-wrapper">
+        <h2>Household Expenses</h2>
+
         <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
 
         <form ng-submit="vm.login()">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                <input type="email" class="form-control" placeholder="Email" ng-model="vm.username" required>
-            </div>
+            <input type="email" class="form-control" placeholder="Email" ng-model="vm.username" required>
 
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                <input type="password" class="form-control" placeholder="Password" ng-model="vm.password" required>
-            </div>
+            <input type="password" class="form-control" placeholder="Password" ng-model="vm.password" required>
 
             <input type="submit" class="btn btn-primary" value="Login" style="margin: auto; display: block;"/>
         </form>

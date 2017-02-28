@@ -1,7 +1,10 @@
-@import url("public/app/components/dashboard/dashboard-style.scss");
-@import url("public/app/components/dashboard/login-style.scss");
-@import url("public/app/components/dashboard/profile-style.scss");
-@import url("public/app/components/dashboard/register-style.scss");
+//@import url("../../app/components/dashboard/dashboard-style.scss");
+////@import url("../../app/components/login/login-style.scss");
+//@import url("../../app/components/profile/profile-style.scss");
+//@import url("../../app/components/register/register-style.scss");
+//
+//@import url("../../app/components/login/login-style");
+@import '../../app/components/login/login-style';
 
 // Theme
 //@import url("public/app/theme/[name].scss");
@@ -9,3 +12,9 @@
 body{
   font-family: Helvetica, Arial, sans-serif;
 }
+
+body, html {
+  height:100%;
+}
+
+.pipa{}

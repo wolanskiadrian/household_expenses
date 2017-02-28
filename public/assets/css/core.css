@@ -1,6 +1,39 @@
-@import url("public/app/components/dashboard/dashboard-style.scss");
-@import url("public/app/components/dashboard/login-style.scss");
-@import url("public/app/components/dashboard/profile-style.scss");
-@import url("public/app/components/dashboard/register-style.scss");
+.login {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .login_background {
+    background: url(/assets/img/login-background.jpg);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px); }
+  .login .form-wrapper {
+    width: 350px;
+    background: #fff;
+    padding: 30px;
+    -webkit-box-shadow: 0px 0px 76px 4px #cccccc;
+    -moz-box-shadow: 0px 0px 76px 4px #cccccc;
+    box-shadow: 0px 0px 76px 4px #cccccc; }
+    .login .form-wrapper h2 {
+      text-transform: uppercase;
+      font-size: 22px;
+      text-align: center;
+      font-weight: 700;
+      color: #6d6d6d;
+      margin-bottom: 20px; }
+
 body {
   font-family: Helvetica, Arial, sans-serif; }
+
+body, html {
+  height: 100%; }

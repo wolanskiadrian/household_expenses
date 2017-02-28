@@ -4,12 +4,12 @@ var gulp = require('gulp');
 gulp.task('default', ['watch']);
 
 gulp.task('build-core', function() {
-    return gulp.src('public/assets/css/**/*.scss')
+    return gulp.src('public/assets/css/core.scss')
         .pipe(sass())
         .pipe(gulp.dest('public/assets/css/'));
 });
 
 /* watch task sass */
 gulp.task('watch', function() {
-    gulp.watch('public/assets/css/**/*.scss', ['build-core']);
+    gulp.watch('public/**/*.scss', ['build-core']);
 });
