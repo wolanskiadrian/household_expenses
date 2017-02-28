@@ -1,21 +1,23 @@
 <div class="login">
     <div class="login_background"></div>
     <div class="form-wrapper">
-        <h2>Household Expenses</h2>
+        <div class="login_form_header">
+            <h2>Household Expenses</h2>
+        </div>
+        <div class="login_form_content">
+            <form ng-submit="vm.login()">
+                <input type="email" class="form-control" placeholder="Email" ng-model="vm.username" required>
+
+                <input type="password" class="form-control" placeholder="Password" ng-model="vm.password" required>
+
+                <input type="submit" class="btn btn-primary" value="Login"/>
+            </form>
+        </div>
+        <div class="login_form_bottom">
+            <p><a ng-href="/#/forgot">Forgot your password?</a></p>
+            <p>Don't have an account? <span ng-click="vm.register()" class="a">Sing Up</span></p>
+        </div>
 
         <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
-
-        <form ng-submit="vm.login()">
-            <input type="email" class="form-control" placeholder="Email" ng-model="vm.username" required>
-
-            <input type="password" class="form-control" placeholder="Password" ng-model="vm.password" required>
-
-            <input type="submit" class="btn btn-primary" value="Login" style="margin: auto; display: block;"/>
-        </form>
-
-        <div style="text-align: center">
-            <p><a ng-href="/#/forgot">Forgot your password?</a></p>
-            <p>Don't have an account? <span ng-click="vm.register()" style="cursor: pointer; color: #337ab7">Sing Up</span></p>
-        </div>
     </div>
 </div>

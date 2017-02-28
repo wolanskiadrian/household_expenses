@@ -20,20 +20,49 @@
   .login .form-wrapper {
     width: 350px;
     background: #fff;
-    padding: 30px;
     -webkit-box-shadow: 0px 0px 76px 4px #cccccc;
     -moz-box-shadow: 0px 0px 76px 4px #cccccc;
     box-shadow: 0px 0px 76px 4px #cccccc; }
-    .login .form-wrapper h2 {
-      text-transform: uppercase;
-      font-size: 22px;
-      text-align: center;
-      font-weight: 700;
-      color: #6d6d6d;
-      margin-bottom: 20px; }
+    .login .form-wrapper .login_form_header {
+      background: #474644;
+      color: #fff;
+      padding: 20px; }
+      .login .form-wrapper .login_form_header h2 {
+        text-transform: uppercase;
+        font-size: 22px;
+        text-align: center;
+        font-weight: 700;
+        margin: 0; }
+    .login .form-wrapper .login_form_bottom {
+      background: #45c9bc;
+      padding: 20px;
+      color: #fff;
+      text-align: center; }
+      .login .form-wrapper .login_form_bottom p {
+        margin: 0; }
+      .login .form-wrapper .login_form_bottom a {
+        color: #545454; }
+      .login .form-wrapper .login_form_bottom .a {
+        color: #545454;
+        cursor: pointer; }
+        .login .form-wrapper .login_form_bottom .a:hover {
+          text-decoration: underline; }
+    .login .form-wrapper .login_form_content {
+      padding: 20px; }
+      .login .form-wrapper .login_form_content .form-control {
+        border-radius: 0;
+        margin-bottom: 5px; }
+      .login .form-wrapper .login_form_content .btn {
+        width: 100%;
+        background: #45c9bc;
+        text-transform: uppercase;
+        margin-top: 20px;
+        border: 0;
+        border-radius: 0;
+        font-weight: bold; }
 
 body {
-  font-family: Helvetica, Arial, sans-serif; }
+  font-family: "Open Sans", sans-serif; }
 
 body, html {
   height: 100%; }
