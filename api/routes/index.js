@@ -54,7 +54,7 @@ router
 
 router
     .route('/expense/:expenseId')
-    .post(ctrlExpense.edit)
+    .put(ctrlExpense.edit)
     .get(ctrlExpense.get)
     .delete(ctrlExpense.delete);
 
@@ -65,7 +65,7 @@ router
 
 router
     .route('/categories/:categoryId')
-    .post(ctrlCategories.edit)
+    .put(ctrlCategories.edit)
     .get(ctrlCategories.get)
     .delete(ctrlCategories.delete);
 
