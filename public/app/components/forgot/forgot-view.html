@@ -1,0 +1,21 @@
+<div class="auth">
+    <div class="auth_background"></div>
+    <div class="form-wrapper">
+        <div class="form_header">
+            <h2>Household Expenses</h2>
+        </div>
+        <div class="form_content">
+            <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
+            <div ng-if="vm.message" class="alert alert-success">{{vm.message}}</div>
+
+            <form ng-submit="vm.forgot()" >
+                <input type="email" class="form-control" placeholder="Email" ng-model="vm.email" required>
+
+                <input type="submit" class="btn btn-primary" value="Send"/>
+            </form>
+        </div>
+        <div class="form_bottom">
+            <p><a ng-href="/#!/login">Back to Login.</a></p>
+        </div>
+    </div>
+</div>

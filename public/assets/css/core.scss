@@ -1,13 +1,8 @@
-//@import url("../../app/components/dashboard/dashboard-style.scss");
-////@import url("../../app/components/login/login-style.scss");
-//@import url("../../app/components/profile/profile-style.scss");
-//@import url("../../app/components/register/register-style.scss");
-//
-//@import url("../../app/components/login/login-style");
+@import '../../app/components/register/register-style.scss';
 @import '../../app/components/login/login-style';
 
 // Theme
-//@import url("public/app/theme/[name].scss");
+@import '../../app/themes/hhs-theme';
 
 body{
   font-family: "Open Sans", sans-serif;

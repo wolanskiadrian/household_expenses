@@ -32,6 +32,22 @@ function config($routeProvider, $httpProvider, $locationProvider) {
                 restricted: false
             }
         })
+        .when('/forgot', {
+            templateUrl: 'app/components/forgot/forgot-view.html',
+            controller: ForgotController,
+            controllerAs: 'vm',
+            access: {
+                restricted: false
+            }
+        })
+        .when('/reset/:token', {
+            templateUrl: 'app/components/reset-password/reset-password-view.html',
+            controller: ResetPasswordController,
+            controllerAs: 'vm',
+            access: {
+                restricted: false
+            }
+        })
         .when('/user/profile', {
             templateUrl: 'app/components/profile/profile-view.html',
             controller: ProfileController,
