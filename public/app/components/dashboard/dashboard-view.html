@@ -1,18 +1,27 @@
-<h1>Dashboard</h1>
+<div class="dashboard-configuration-view">
+    <!--include navigation-->
+    <div class="navigation left-panel" ng-include="'/public/app/shared/navigation/navigation.html'"></div>
+    <!--main content-->
+    <div class="dashboard-main">
+        <div class="__content">
+            <h2>Dashboard</h2>
+            <p>Welcome user: {{vm.user.firstname}} {{vm.user.lastname}}</p>
 
-<p>Welcome user: {{vm.user.firstname}} {{vm.user.lastname}}</p>
+            <h2>History:</h2>
+            <div ng-repeat="item in vm.expenses">
+                <ul class="list-group">
+                    <li>Vendor: {{item.vendor}}</li>
+                    <li>Amount: {{item.amount}}</li>
+                    <li>CategoryId: {{item.categoryId}}</li>
+                    <li>Expense Date: {{item.expenseDate}}</li>
+                    <li>Description: {{item.description}}</li>
+                </ul>
+            </div>
+        </div>
 
-<h1>History:</h1>
-
-<div ng-repeat="item in vm.expenses">
-    <ul class="list-group">
-        <li>Vendor: {{item.vendor}}</li>
-        <li>Amount: {{item.amount}}</li>
-        <li>CategoryId: {{item.categoryId}}</li>
-        <li>Expense Date: {{item.expenseDate}}</li>
-        <li>Description: {{item.description}}</li>
-    </ul>
+        <button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
+        <button class="btn btn-primary" type="button" ng-click="vm.addExpense()">Add New Expense</button>
+    </div>
+    <!--will be condensed on other pages-->
+    <!--showed on the right side-->
 </div>
-
-<button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
-<button class="btn btn-primary" type="button" ng-click="vm.addExpense()">Add New Expense</button>
