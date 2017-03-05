@@ -7,6 +7,14 @@ function ExpenseController($window, $location, ExpenseService) {
     vm.user = JSON.parse($window.sessionStorage.getItem('userData'));
     vm.expenseData = null;
 
+    function init() {
+        ExpenseService.getCategories().then(function (res) {
+            vm.categories = res.data;
+        });
+    }
+
+    init();
+
     vm.add = function () {
         vm.expenseData.userId = vm.user.id;
 

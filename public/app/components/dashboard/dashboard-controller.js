@@ -1,8 +1,8 @@
 angular.module('hhsApp').controller('DashboardController', DashboardController);
 
-DashboardController.$inject = ['$window', '$location', 'AuthFactory', 'DashboardService'];
+DashboardController.$inject = ['$window', '$location', '$q', 'AuthFactory', 'DashboardService'];
 
-function DashboardController($window, $location, AuthFactory, DashboardService) {
+function DashboardController($window, $location, $q, AuthFactory, DashboardService) {
     var vm = this;
     vm.user = JSON.parse($window.sessionStorage.getItem('userData'));
     vm.expenses = [];
@@ -10,8 +10,12 @@ function DashboardController($window, $location, AuthFactory, DashboardService) 
     console.log(vm.user);
 
     function init() {
-        DashboardService.getAll(vm.user.id).then(function (res) {
-            vm.expenses = res.data;
+        $q.all([
+            DashboardService.getAll(vm.user.id),
+            DashboardService.getCategories()
+        ]).then(function (res) {
+            vm.expenses = res[0].data;
+            vm.categories = res[1].data;
         });
     }
 

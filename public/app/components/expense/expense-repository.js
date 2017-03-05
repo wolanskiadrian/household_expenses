@@ -10,5 +10,13 @@ function ExpenseService($http) {
         }).catch(function (err) {
             return err;
         });
-    }
+    };
+
+    this.getCategories = function getCategories() {
+        return $http.get('/api/categories').then(function (res) {
+            return res;
+        }).catch(function (err) {
+            return err;
+        })
+    };
 }
