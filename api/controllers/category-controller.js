@@ -18,6 +18,25 @@ module.exports.add = function (req, res) {
     })
 };
 
+module.exports.addByUser = function (req, res) {
+    var name = req.body.name;
+    var icon = req.body.icon;
+    var userId = req.params.userId;
+
+    Category.create({
+        name: name,
+        icon: icon,
+        user: userId
+    }, function (err, category) {
+        if(err) {
+            console.log(err);
+            res.status(500).json(err);
+        } else {
+            res.status(201).json(category);
+        }
+    })
+};
+
 module.exports.edit = function (req, res) {
     var categoryId = req.params.categoryId;
 

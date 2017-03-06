@@ -15,8 +15,7 @@ var expenseSchema = new Schema({
     },
     description: String,
     vendor: {
-        type: String,
-        required: true
+        type: String
     },
     expenseDate: {
         type: Date,
