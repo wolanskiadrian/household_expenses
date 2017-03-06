@@ -19,8 +19,6 @@ function ExpenseController($window, $location, ExpenseService) {
         vm.expenseData.userId = vm.user.id;
 
         ExpenseService.add(vm.expenseData).then(function (res) {
-            console.log(res);
-
             if(res.status === 201) {
                 $location.path('/dashboard');
             }

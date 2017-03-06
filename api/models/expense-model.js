@@ -1,13 +1,16 @@
 var mongoose = require('mongoose');
+require('mongoose-double')(mongoose);
+var SchemaTypes = mongoose.Schema.Types;
 var Schema = mongoose.Schema;
 
 var expenseSchema = new Schema({
     categoryId: {
-        type: Number,
+        type: mongoose.Schema.ObjectId,
+        ref: 'Category',
         required: true
     },
     amount: {
-        type: Number,
+        type: SchemaTypes.Double,
         required: true
     },
     description: String,

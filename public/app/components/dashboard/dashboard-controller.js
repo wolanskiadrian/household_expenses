@@ -7,8 +7,6 @@ function DashboardController($window, $location, $q, AuthFactory, DashboardServi
     vm.user = JSON.parse($window.sessionStorage.getItem('userData'));
     vm.expenses = [];
 
-    console.log(vm.user);
-
     function init() {
         $q.all([
             DashboardService.getAll(vm.user.id),
