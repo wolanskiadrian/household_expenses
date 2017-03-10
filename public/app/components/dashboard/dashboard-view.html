@@ -12,7 +12,7 @@
                 <ul class="list-group">
                     <li>Vendor: {{item.vendor}}</li>
                     <li>Amount: {{item.amount}}</li>
-                    <li>CategoryId: {{item.categoryId}}</li>
+                    <li>Category: {{item.categoryName}}</li>
                     <li>Expense Date: {{item.expenseDate}}</li>
                     <li>Description: {{item.description}}</li>
                 </ul>
@@ -21,6 +21,7 @@
 
         <button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
         <button class="btn btn-primary" type="button" ng-click="vm.addExpense()">Add New Expense</button>
+        <button class="btn btn-primary" type="button" ng-click="vm.userProfile()">User profile</button>
     </div>
     <!--will be condensed on other pages-->
     <!--showed on the right side-->

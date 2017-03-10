@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Category = mongoose.model('Category');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports.add = function (req, res) {
     var name = req.body.name;
@@ -90,15 +91,31 @@ module.exports.get = function (req, res) {
 };
 
 module.exports.getAll = function (req, res) {
-    Category
-        .find()
-        .exec(function (err, categories) {
+    var userId = req.params.userId;
+
+    Category.find({user: {$in: [undefined, userId]}})
+    .exec(function (err, allNeededCategories) {
+        if (err) {
+            console.log("Error finding categories");
+            res.status(500).json(err);
+        } else {
+            console.log('Found categories', allNeededCategories.length);
+            res.status(200).json(allNeededCategories);
+        }
+    });
+};
+
+module.exports.getUserCategories = function (req, res) {
+    var userId = req.params.userId;
+
+    Category.find({user: userId})
+        .exec(function (err, userCategories) {
             if (err) {
                 console.log("Error finding categories");
                 res.status(500).json(err);
             } else {
-                console.log('Found hotels', categories.length);
-                res.status(200).json(categories);
+                console.log('Found categories', userCategories.length);
+                res.status(200).json(userCategories);
             }
         });
 };

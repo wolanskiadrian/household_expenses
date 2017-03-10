@@ -64,6 +64,14 @@ router
     .post(ctrlCategories.add);
 
 router
+    .route('/categories/all/:userId')
+    .get(ctrlCategories.getAll);
+
+router
+    .route('/categories/user/:userId')
+    .get(ctrlCategories.getUserCategories);
+
+router
     .route('/category/:userId')
     .post(ctrlCategories.addByUser);
 

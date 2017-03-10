@@ -8,7 +8,7 @@ function ExpenseController($window, $location, ExpenseService) {
     vm.expenseData = null;
 
     function init() {
-        ExpenseService.getCategories().then(function (res) {
+        ExpenseService.getCategories(vm.user.id).then(function (res) {
             vm.categories = res.data;
         });
     }

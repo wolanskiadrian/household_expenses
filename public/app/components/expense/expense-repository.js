@@ -12,8 +12,8 @@ function ExpenseService($http) {
         });
     };
 
-    this.getCategories = function getCategories() {
-        return $http.get('/api/categories').then(function (res) {
+    this.getCategories = function getCategories(userId) {
+        return $http.get('/api/categories/all/' + userId).then(function (res) {
             return res;
         }).catch(function (err) {
             return err;

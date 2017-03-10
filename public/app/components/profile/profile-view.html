@@ -1,1 +1,31 @@
-<h1>User profile</h1>
+<div class="container">
+    <h1>User profile</h1>
+
+    <h2>Zmiana hasła</h2>
+    <div class="form_content">
+        <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
+        <div ng-if="vm.message" class="alert alert-success">{{vm.message}}</div>
+
+        <form ng-submit="vm.passwordChange()">
+            <input type="password" class="form-control" placeholder="Password" ng-model="vm.password" required>
+
+            <input type="password" class="form-control" placeholder="Confirm password" ng-model="vm.confirm" required>
+
+            <input type="submit" class="btn btn-primary" value="Send"/>
+        </form>
+    </div>
+
+    <h2>Kategorie</h2>
+    <div ng-repeat="category in vm.userCategories">
+        <hr/>
+        <p>Category Name: {{category.name}}</p>
+    </div>
+
+    <form ng-submit="vm.addCategory()">
+        <input type="text" class="form-control" placeholder="Category Name" ng-model="vm.categoryName" required>
+
+        <input type="text" class="form-control" placeholder="Category Icon" ng-model="vm.categoryIcon" required>
+
+        <input type="submit" class="btn btn-primary" value="Add category"/>
+    </form>
+</div>

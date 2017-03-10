@@ -5,7 +5,7 @@
         <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
 
         <form ng-submit="vm.add()" >
-            <input type="text" class="form-control" placeholder="Vendor" ng-model="vm.expenseData.vendor" required>
+            <input type="text" class="form-control" placeholder="Vendor" ng-model="vm.expenseData.vendor">
 
             <input type="text" class="form-control" placeholder="Amount" ng-model="vm.expenseData.amount" required>
 

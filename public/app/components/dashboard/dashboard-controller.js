@@ -7,13 +7,27 @@ function DashboardController($window, $location, $q, AuthFactory, DashboardServi
     vm.user = JSON.parse($window.sessionStorage.getItem('userData'));
     vm.expenses = [];
 
+    function setCategoryForExpense(expenses, categories) {
+        angular.forEach(expenses, function (item) {
+            var category = _.find(categories, {_id: item.categoryId});
+
+            if(category){
+                item.categoryName = category.name;
+            } else {
+                item.categoryName = 'No category included';
+            }
+        })
+    }
+
     function init() {
         $q.all([
             DashboardService.getAll(vm.user.id),
-            DashboardService.getCategories()
+            DashboardService.getCategories(vm.user.id)
         ]).then(function (res) {
             vm.expenses = res[0].data;
             vm.categories = res[1].data;
+
+            setCategoryForExpense(vm.expenses, vm.categories);
         });
     }
 
@@ -29,5 +43,9 @@ function DashboardController($window, $location, $q, AuthFactory, DashboardServi
 
     vm.addExpense = function () {
         $location.path('/expense/add');
-    }
+    };
+
+    vm.userProfile = function () {
+        $location.path('/user/profile');
+    };
 };
