@@ -278,6 +278,7 @@ module.exports.authenticate = function (req, res, next) {
 module.exports.forgotPasswordEmail = function (req, res) {
     var email = req.body.email;
     var token = bcrypt.hashSync(email, bcrypt.genSaltSync(8), null);
+    token = token.split("/").join("-");
 
     User.findOne({
         email: email

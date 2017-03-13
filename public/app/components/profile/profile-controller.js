@@ -37,12 +37,11 @@ function ProfileController($window, $timeout, ProfileService) {
     vm.addCategory = function () {
         ProfileService.addCategory(vm.categoryName, vm.categoryIcon, vm.user.id)
             .then(function (res) {
-                if(res.status === 200) {
+                if(res.status === 201) {
                     vm.categoryName = '';
                     vm.categoryIcon = '';
 
-                    //TODO: refresh categories
-                    init(); //doesn't work ???
+                    init();
                 }
             })
     };
