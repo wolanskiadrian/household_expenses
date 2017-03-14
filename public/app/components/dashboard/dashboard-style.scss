@@ -3,6 +3,7 @@
   overflow-y: auto;
 
   padding-right: 0;
+  padding-left: 0;
 
   .dashboard-header {
     height: 104px;
@@ -59,6 +60,7 @@
   padding-left: 0;
   padding: 20px;
   color: $font-white;
+  height: 100%;
 
   background: -webkit-linear-gradient(#46cabd, #28a5b9); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#46cabd, #28a5b9); /* For Opera 11.1 to 12.0 */
