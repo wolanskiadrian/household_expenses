@@ -1,3 +1,10 @@
+$background-gray: #454440;
+
+$font-white: #fff;
+$font-gray: #8b8a86;
+
+$border-light-gray: #e4e4dc;
+
 // Auth bg
 
 .auth {
@@ -87,4 +94,15 @@
   -moz-box-shadow: 5px 5px 30px 1px #797979;
   box-shadow: 5px 5px 30px 1px #797979;
 
+}
+
+//panels
+
+.left-panel {
+  width: 200px;
+  position: fixed;
+}
+
+.right-panel {
+  margin-left: 200px;
 }

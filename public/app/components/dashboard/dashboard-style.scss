@@ -1,0 +1,57 @@
+.dashboard-configuration-view {
+  padding-right: 0;
+
+  .dashboard-header {
+    height: 104px;
+    border-bottom: 2px solid $border-light-gray;
+    padding: 0 50px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__title {
+      text-transform: uppercase;
+      color: $font-gray;
+      margin:0;
+      font-size: 24px;
+      font-weight: 700;
+      margin-right: 50px;
+    }
+
+    &__filterbox {
+      display: inline-flex;
+
+      select {
+        margin-right: 50px;
+      }
+    }
+  }
+
+  .dashboard-main {
+
+    &__expense-item {
+      padding: 30px 20px;
+      border-bottom: 1px solid $border-light-gray;
+
+      &__content {
+
+        p {
+          text-transform: uppercase;
+          font-weight: 700;
+          color: $font-gray;
+
+          span {
+            text-transform: none;
+            font-weight: normal;
+            padding-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dashboard-condensed{
+  padding-left: 0;
+}

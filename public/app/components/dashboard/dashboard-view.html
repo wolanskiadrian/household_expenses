@@ -1,28 +1,53 @@
-<div class="dashboard-configuration-view">
-    <!--include navigation-->
-    <div class="navigation left-panel" ng-include="'/app/shared/navigation/navigation.html'"></div>
-    <!--main content-->
-    <div class="dashboard-main">
-        <div class="__content">
-            <h2>Dashboard</h2>
-            <p>Welcome user: {{vm.user.firstname}} {{vm.user.lastname}}</p>
+<div class="row">
+    <div class="dashboard-configuration-view col-lg-9">
+        <!--main content-->
+        <div class="dashboard-header">
+            <h2 class="dashboard-header__title">Expenses</h2>
+            <div class="dashboard-header__filterbox">
+                <select class="form-control">
+                    <option>Pick month...</option>
+                </select>
+                <select class="form-control">
+                    <option>Pick year...</option>
+                </select>
+            </div>
+        </div>
 
-            <h2>History:</h2>
-            <div ng-repeat="item in vm.expenses">
-                <ul class="list-group">
-                    <li>Vendor: {{item.vendor}}</li>
-                    <li>Amount: {{item.amount}}</li>
-                    <li>Category: {{item.categoryName}}</li>
-                    <li>Expense Date: {{item.expenseDate}}</li>
-                    <li>Description: {{item.description}}</li>
-                </ul>
+        <div class="dashboard-main container-fluid">
+                <!--<h2>Dashboard</h2>-->
+                <!--<p>Welcome user: {{vm.user.firstname}} {{vm.user.lastname}}</p>-->
+
+                <!--<h2>History:</h2>-->
+            <div ng-repeat="item in vm.expenses" class="dashboard-main__expense-item row">
+                <div class="dashboard-main__expense-item__icon-wrapper col-lg-3">
+                    <!--Icon Category-->
+                    <!--<i class="icon category-{{item.categoryIcon}}"></i>-->
+                </div>
+                <div class="dashboard-main__expense-item__content col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p>Category name: <span>{{item.categoryName}}</span></p>
+                            <p>Amount: <span>{{item.amount}}</span></p>
+                            <p>Vendor: <span>{{item.vendor}}</span></p>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <p>Expense date: <span>{{item.expenseDate | date : 'dd MMMM yyyy'}}</span></p>
+                            <p>Description: <span>{{item.description}}</span></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
         <button class="btn btn-primary" type="button" ng-click="vm.addExpense()">Add New Expense</button>
         <button class="btn btn-primary" type="button" ng-click="vm.userProfile()">User profile</button>
+        <!--will be condensed on other pages-->
+        <!--showed on the right side-->
     </div>
-    <!--will be condensed on other pages-->
-    <!--showed on the right side-->
+
+    <div class="dashboard-condensed col-lg-3">
+        <h2>Month Data</h2>
+    </div>
 </div>
