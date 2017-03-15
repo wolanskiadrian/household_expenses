@@ -10,7 +10,7 @@ var expenseSchema = new Schema({
         required: true
     },
     amount: {
-        type: SchemaTypes.Double,
+        type: Number,
         required: true
     },
     description: String,

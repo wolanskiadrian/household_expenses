@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div ng-if="vm.filteredExpenses.length === 0">There is no expenses.</div>
+        <div class="dashboard-main__empty-info" ng-if="vm.filteredExpenses.length === 0">There is no expenses.</div>
     </div>
 
     <button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
@@ -49,4 +49,16 @@
 
 <div class="dashboard-condensed col-lg-3">
     <h2>Month Data</h2>
+
+    <div class="dashboard-condensed__category-info">
+        <h4>Categories:</h4>
+
+        <div class="" ng-repeat="category in vm.categoriesInMonth" ng-if="vm.categoriesInMonth.length > 0">
+            <p>{{category.name}}: <span>{{category.amount}}</span></p>
+        </div>
+
+        <div class="dashboard-condensed__empty-info" ng-if="vm.categoriesInMonth.length === 0">There is no expenses included on this month.</div>
+    </div>
+
+    <h4 ng-if="vm.categoriesInMonth.length > 0">Total: {{vm.totalAmountOfMouth}}</h4>
 </div>

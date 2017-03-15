@@ -125,6 +125,10 @@
         text-transform: none;
         font-weight: normal;
         padding-left: 10px; }
+  .dashboard-configuration-view .dashboard-main__empty-info {
+    text-align: center;
+    padding: 30px;
+    font-size: 18px; }
 
 .dashboard-condensed {
   padding-left: 0;
@@ -139,6 +143,11 @@
   /* For Firefox 3.6 to 15 */
   background: linear-gradient(#46cabd, #28a5b9);
   /* Standard syntax */ }
+  .dashboard-condensed h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase; }
 
 body {
   font-family: "Open Sans", sans-serif; }

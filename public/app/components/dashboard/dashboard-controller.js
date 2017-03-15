@@ -10,6 +10,7 @@ function DashboardController($window, $location, $q, AuthFactory, DashboardServi
     vm.expenses = [];
     vm.mountsList = MOUNTHS;
     vm.yearsList = [];
+    vm.categoriesInMonth = [];
 
     function setCurrentDataFilters() {
         var todayDate = new Date();
@@ -47,8 +48,6 @@ function DashboardController($window, $location, $q, AuthFactory, DashboardServi
 
     function filterExpenses() {
 
-        console.log(vm.selectedMonth, vm.selectedYear);
-
         function checkYear(e) {
             var eYear = new Date(e.expenseDate).getFullYear();
             if(eYear === vm.selectedYear) {
@@ -75,6 +74,37 @@ function DashboardController($window, $location, $q, AuthFactory, DashboardServi
                 vm.filteredExpenses.push(e);
             }
         });
+
+        vm.categoriesInMonth = getUniqCategoriesFromFilteredList(vm.filteredExpenses);
+        getMonthDetailsData(vm.categoriesInMonth, vm.filteredExpenses);
+        vm.totalAmountOfMouth = 0;
+
+        _.forEach(vm.categoriesInMonth, function (cat) {
+            vm.totalAmountOfMouth += cat.amount;
+        });
+    }
+
+    function getMonthDetailsData(categoriesInMonth, fe) {
+        _.forEach(fe, function (e) {
+            var tCat = _.find(categoriesInMonth, {'name': e.categoryName});
+
+            if(tCat) {
+                tCat.amount += e.amount;
+            }
+        });
+    }
+
+    function getUniqCategoriesFromFilteredList(fe) {
+        var tCategories = [];
+
+        _.forEach(fe, function (e) {
+            tCategories.push({
+                name: e.categoryName,
+                amount: 0
+            });
+        });
+
+        return _.uniqBy(tCategories, 'name');
     }
 
     function init() {
