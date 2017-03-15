@@ -29,6 +29,10 @@
       select {
         margin-right: 50px;
       }
+
+      .month-select {
+        min-width: 150px;
+      }
     }
   }
 
@@ -37,6 +41,18 @@
     &__expense-item {
       padding: 30px 20px 20px 20px;
       border-bottom: 1px solid $border-light-gray;
+
+      &__icon-wrapper {
+        .icon-category {
+          width: 60px;
+          height: 60px;
+          display: block;
+        }
+
+        .icon-cat-sample {
+          background: url(/assets/img/cat-icon.png);
+        }
+      }
 
       &__content {
 
