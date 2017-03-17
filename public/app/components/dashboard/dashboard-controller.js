@@ -2,9 +2,9 @@ var MOUNTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', '
 
 angular.module('hhsApp').controller('DashboardController', DashboardController);
 
-DashboardController.$inject = ['$window', '$location', '$q', 'AuthFactory', 'DashboardService'];
+DashboardController.$inject = ['$window', '$location', '$q', 'AuthFactory', 'ModalService', 'DashboardService'];
 
-function DashboardController($window, $location, $q, AuthFactory, DashboardService) {
+function DashboardController($window, $location, $q, AuthFactory, ModalService, DashboardService) {
     var vm = this;
     vm.user = JSON.parse($window.sessionStorage.getItem('userData'));
     vm.expenses = [];
@@ -131,8 +131,23 @@ function DashboardController($window, $location, $q, AuthFactory, DashboardServi
         $location.path('/login');
     };
 
-    vm.addExpense = function () {
-        $location.path('/expense/add');
+    vm.showAddNewExpenseModal = function () {
+        ModalService.showModal({
+            templateUrl: 'app/shared/modals/add-new-expense-modal/add-new-expense-modal-view.html',
+            controller: 'AddNewExpenseModalController',
+            controllerAs: 'vm',
+            inputs: {
+                title: 'Add New Expense',
+                categories: vm.categories,
+                userId: vm.user.id
+            }
+        }).then(function (modal) {
+            modal.close.then(function (res) {
+                if(res) {
+                    init();
+                }
+            })
+        })
     };
 
     vm.userProfile = function () {

@@ -1,4 +1,4 @@
-angular.module('hhsApp', ['ngRoute'])
+angular.module('hhsApp', ['ngRoute', 'angularModalService'])
     .config(config)
     .run(run);
 

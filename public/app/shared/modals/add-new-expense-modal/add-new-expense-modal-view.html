@@ -1,0 +1,28 @@
+<div class="modal">
+    <div class="modal__box">
+        <div class="header">
+            <p class="title">{{vm.title}}</p>
+        </div>
+
+        <div class="content">
+            <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
+            <input type="text" class="form-control" placeholder="Vendor" ng-model="vm.expenseData.vendor">
+
+            <input type="number" class="form-control" placeholder="Amount" ng-model="vm.expenseData.amount" required>
+
+            <!--<input type="text" class="form-control" placeholder="Category Id" ng-model="vm.expenseData.categoryId" required>-->
+            <select class="form-control" ng-model="vm.expenseData.categoryId" required>
+                <option ng-repeat="category in vm.categories" ng-value="category._id">{{category.name}}</option>
+            </select>
+
+            <input type="date" class="form-control" placeholder="Expense Date" ng-model="vm.expenseData.expenseDate">
+
+            <textarea class="form-control" placeholder="Description" ng-model="vm.expenseData.description"></textarea>
+        </div>
+
+        <div class="footer">
+            <button type="button" class="btn btn-primary" ng-click="vm.addExpense()">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="vm.closeModal()">Close</button>
+        </div>
+    </div>
+</div>

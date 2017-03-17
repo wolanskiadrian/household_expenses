@@ -1,24 +1,28 @@
-<h1>Add Expense</h1>
+<div class="expense">
+    <form ng-submit="vm.add()" >
+        <div class="expense__add">
+            <div class="expense-header">
+                <h2 class="expense-header__title">Add Expense</h2>
+                <input type="submit" class="btn btn-primary" value="Add Expense"/>
+            </div>
 
-<div class="container">
-    <div class="form-wrapper" style="width: 400px; margin: auto; padding: 20px; border: 1px solid #d3d3d3;">
-        <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
+            <div class="expense_content">
+                <div class="expense_content__form-wrapper">
+                    <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
+                    <input type="text" class="form-control" placeholder="Vendor" ng-model="vm.expenseData.vendor">
 
-        <form ng-submit="vm.add()" >
-            <input type="text" class="form-control" placeholder="Vendor" ng-model="vm.expenseData.vendor">
+                    <input type="number" class="form-control" placeholder="Amount" ng-model="vm.expenseData.amount" required>
 
-            <input type="number" class="form-control" placeholder="Amount" ng-model="vm.expenseData.amount" required>
+                    <!--<input type="text" class="form-control" placeholder="Category Id" ng-model="vm.expenseData.categoryId" required>-->
+                    <select class="form-control" ng-model="vm.expenseData.categoryId" required>
+                        <option ng-repeat="category in vm.categories" ng-value="category._id">{{category.name}}</option>
+                    </select>
 
-            <!--<input type="text" class="form-control" placeholder="Category Id" ng-model="vm.expenseData.categoryId" required>-->
-            <select class="form-control" ng-model="vm.expenseData.categoryId" required>
-                <option ng-repeat="category in vm.categories" ng-value="category._id">{{category.name}}</option>
-            </select>
+                    <input type="date" class="form-control" placeholder="Expense Date" ng-model="vm.expenseData.expenseDate">
 
-            <input type="date" class="form-control" placeholder="Expense Date" ng-model="vm.expenseData.expenseDate">
-
-            <textarea class="form-control" placeholder="Description" ng-model="vm.expenseData.description"></textarea>
-
-            <input type="submit" class="btn btn-primary" value="Add" style="margin: auto; display: block;"/>
-        </form>
-    </div>
+                    <textarea class="form-control" placeholder="Description" ng-model="vm.expenseData.description"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

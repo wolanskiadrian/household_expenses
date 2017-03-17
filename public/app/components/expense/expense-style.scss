@@ -1,0 +1,31 @@
+.expense {
+  &__add {
+    .expense-header {
+      height: 104px;
+      border-bottom: 2px solid $border-light-gray;
+      padding: 0 50px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__title {
+        text-transform: uppercase;
+        color: $font-gray;
+        margin:0;
+        font-size: 24px;
+        font-weight: 700;
+        margin-right: 50px;
+      }
+    }
+
+    .expense_content {
+      padding-top: 30px;
+
+      &__form-wrapper {
+        max-width: 400px;
+        margin: auto;
+      }
+    }
+  }
+}
