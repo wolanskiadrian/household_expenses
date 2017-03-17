@@ -6,12 +6,15 @@ function AddNewExpenseModalController(close, title, categories, userId, ExpenseS
     var vm = this;
     vm.title = title;
     vm.categories = categories;
+    vm.expenseData = {};
 
     vm.closeModal = function () {
         close();
     };
 
     vm.addExpense = function () {
+        //TODO: form validation
+
         vm.expenseData.userId = userId;
 
         ExpenseService.add(vm.expenseData).then(function (res) {

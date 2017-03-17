@@ -157,4 +157,19 @@ function DashboardController($window, $location, $q, AuthFactory, ModalService, 
     vm.filterExp = function () {
         filterExpenses()
     };
+
+    vm.quickEditMode = function (expense, param) {
+        expense.expenseDate = new Date(expense.expenseDate);
+        expense.editMode = param;
+    };
+
+    vm.editExpense = function (expense) {
+        console.log(expense);
+        //TODO: edit expense endpoint
+    };
+
+    vm.deleteExpense = function (id) {
+        console.log(id);
+        //TODO: delete expense endpoint
+    }
 };

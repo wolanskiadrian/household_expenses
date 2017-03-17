@@ -24,19 +24,37 @@
                 <i class="icon-category icon-cat-sample"></i>
                 <!--<i class="icon category-{{item.categoryIcon}}"></i>-->
             </div>
-            <div class="dashboard-main__expense-item__content col-lg-10">
+            <div class="dashboard-main__expense-item__content col-lg-8">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>Category name: <span>{{item.categoryName}}</span></p>
-                        <p>Amount: <span>{{item.amount}}</span></p>
-                        <p>Vendor: <span>{{item.vendor}}</span></p>
+                        <p>Category name: <span ng-if="!item.editMode">{{item.categoryName}}</span></p>
+                        <select class="form-control" ng-model="item.categoryId" required ng-if="item.editMode">
+                            <option ng-repeat="category in vm.categories" ng-value="category._id">{{category.name}}</option>
+                        </select>
+
+                        <p>Amount: <span ng-if="!item.editMode">{{item.amount}}</span></p>
+                        <input type="number" class="form-control" ng-model="item.amount" ng-if="item.editMode">
+
+                        <p>Vendor: <span ng-if="!item.editMode">{{item.vendor}}</span></p>
+                        <input type="text" class="form-control" ng-model="item.vendor" ng-if="item.editMode">
                     </div>
 
                     <div class="col-lg-6">
-                        <p>Expense date: <span>{{item.expenseDate | date : 'dd MMMM yyyy'}}</span></p>
-                        <p>Description: <span>{{item.description}}</span></p>
+                        <p>Expense date: <span ng-if="!item.editMode">{{item.expenseDate | date : 'dd MMMM yyyy'}}</span></p>
+                        <input type="date" class="form-control" placeholder="Expense Date" ng-model="item.expenseDate" ng-if="item.editMode">
+
+                        <p>Description: <span ng-if="!item.editMode">{{item.description}}</span></p>
+                        <textarea class="form-control" placeholder="Description" ng-model="item.description" ng-if="item.editMode"></textarea>
                     </div>
                 </div>
+            </div>
+
+            <div class="dashboard-main__expense-item__controllers col-lg-2">
+                <p ng-if="!item.editMode" ng-click="vm.quickEditMode(item, true)">Edit</p>
+                <p ng-if="!item.editMode" ng-click="vm.deleteExpense(item._id)">Delete</p>
+
+                <p ng-if="item.editMode" ng-click="vm.quickEditMode(item, false)">Cancel</p>
+                <p ng-if="item.editMode" ng-click="vm.editExpense(item)">Save</p>
             </div>
         </div>
 
