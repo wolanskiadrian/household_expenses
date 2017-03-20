@@ -1,6 +1,3 @@
-process.env.PORT = 1234;
-process.env.MONGOLAB_URI = 'mongodb://heroku_73v1xgjn:grbbrsdtp7see4bvbo4j4j38d8@ds137090.mlab.com:37090/heroku_73v1xgjn';
-
 require('./api/data/db');
 var express = require('express');
 var app = express();
