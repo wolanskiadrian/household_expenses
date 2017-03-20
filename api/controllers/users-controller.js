@@ -11,8 +11,10 @@ var myHasher = function(password, tempUserData, insertTempUser, callback) {
     return insertTempUser(hash, tempUserData, callback);
 };
 
+var pageURI = process.env.PAGE_URI || 'http://localhost:1337';
+
 nev.configure({
-    verificationURL: 'http://localhost:1337/api/email-verification/${URL}',
+    verificationURL: pageURI + '/api/email-verification/${URL}',
     persistentUserModel: User,
     tempUserCollection: 'users_temp',
     expirationTime: 600,
