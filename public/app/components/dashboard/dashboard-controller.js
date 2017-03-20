@@ -2,9 +2,9 @@ var MOUNTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', '
 
 angular.module('hhsApp').controller('DashboardController', DashboardController);
 
-DashboardController.$inject = ['$window', '$location', '$q', 'AuthFactory', 'ModalService', 'DashboardService'];
+DashboardController.$inject = ['$window', '$location', '$q', 'AuthFactory', 'ModalService', 'DashboardService', 'ExpenseService'];
 
-function DashboardController($window, $location, $q, AuthFactory, ModalService, DashboardService) {
+function DashboardController($window, $location, $q, AuthFactory, ModalService, DashboardService, ExpenseService) {
     var vm = this;
     vm.user = JSON.parse($window.sessionStorage.getItem('userData'));
     vm.expenses = [];
@@ -147,7 +147,7 @@ function DashboardController($window, $location, $q, AuthFactory, ModalService, 
                     init();
                 }
             })
-        })
+        });
     };
 
     vm.userProfile = function () {
@@ -164,12 +164,43 @@ function DashboardController($window, $location, $q, AuthFactory, ModalService, 
     };
 
     vm.editExpense = function (expense) {
-        console.log(expense);
-        //TODO: edit expense endpoint
+        ModalService.showModal({
+            templateUrl: 'app/shared/modals/confirm/confirm-view.html',
+            controller: 'ConfirmController',
+            controllerAs: 'vm',
+            inputs: {
+                title: 'Edit Expense',
+                message: 'Are you sure to edit this expense ?'
+            }
+        }).then(function (modal) {
+            modal.close.then(function (res) {
+                if(res) {
+                    ExpenseService.edit(expense._id, expense).then(function () {
+                        vm.quickEditMode(expense, false);
+                        init();
+                    });
+                }
+            })
+        });
     };
 
     vm.deleteExpense = function (id) {
-        console.log(id);
-        //TODO: delete expense endpoint
-    }
+        ModalService.showModal({
+            templateUrl: 'app/shared/modals/confirm/confirm-view.html',
+            controller: 'ConfirmController',
+            controllerAs: 'vm',
+            inputs: {
+                title: 'Delete Expense',
+                message: 'Are you sure to delete this expense ?'
+            }
+        }).then(function (modal) {
+            modal.close.then(function (res) {
+                if(res) {
+                    ExpenseService.deleteOne(id).then(function () {
+                        init();
+                    });
+                }
+            })
+        });
+    };
 };

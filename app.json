@@ -1,0 +1,6 @@
+{
+  "name": "HouseHold Expenses",
+  "description": "Household expenses app. MEAN app.",
+  "repository": "https://github.com/wolanskiadrian/household_expenses",
+  "keywords": ["node", "mean", "angular", "expenses", "home", "express", "mongodb"]
+}
