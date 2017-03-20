@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var dburl = 'mongodb://localhost:27017/hhs-db';
 
-mongoose.connect(process.env.MONGOLAB_URI || dburl);
+mongoose.connect(process.env.MONGODB_URI || dburl);
 
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connected to ' + dburl);
