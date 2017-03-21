@@ -3,6 +3,7 @@ $background-white: #fff;
 
 $font-white: #fff;
 $font-gray: #8b8a86;
+$font-red-error: #dc3333;
 
 $border-light-gray: #e4e4dc;
 
@@ -123,4 +124,47 @@ $border-light-gray: #e4e4dc;
 ::-webkit-scrollbar-thumb
 {
   background-color: rgba(47, 47, 47, 0.69);
+}
+
+//validation messages
+
+.form-error-message {
+  color: $font-red-error;
+  font-size: 12px;
+  margin: 5px 0px 10px 12px;
+}
+
+//sample icon
+.icon-category {
+  width: 60px;
+  height: 60px;
+  display: block;
+}
+
+.icon-cat-sample {
+  background: url(/assets/img/cat-icon.png);
+}
+
+//categories
+.categories-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  max-height: 210px;
+  overflow: auto;
+  margin: 15px 0;
+
+  .category-item{
+    text-align: center;
+    width: 100px;
+    margin: auto;
+    margin-top: 10px;
+
+    i{
+      margin: auto;
+      margin-bottom: 5px;
+    }
+  }
 }

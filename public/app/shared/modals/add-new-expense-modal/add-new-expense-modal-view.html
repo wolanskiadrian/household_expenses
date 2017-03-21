@@ -6,16 +6,45 @@
 
         <div class="content">
             <div ng-if="vm.errorMessage" class="alert alert-danger">{{vm.errorMessage}}</div>
-            <input type="text" class="form-control" placeholder="Vendor" ng-model="vm.expenseData.vendor">
 
-            <input type="number" class="form-control" placeholder="Amount" ng-model="vm.expenseData.amount" required>
+            <div class="input-wrapper">
+                <!--<select class="form-control" ng-model="vm.expenseData.categoryId">-->
+                <!--<option ng-repeat="category in vm.categories" ng-value="category._id">{{category.name}}</option>-->
+                <!--</select>-->
 
-            <!--<input type="text" class="form-control" placeholder="Category Id" ng-model="vm.expenseData.categoryId" required>-->
-            <select class="form-control" ng-model="vm.expenseData.categoryId" required>
-                <option ng-repeat="category in vm.categories" ng-value="category._id">{{category.name}}</option>
-            </select>
+                <input type="text" class="form-control" ng-model="vm.categoryName" ng-click="vm.showCategories(true)">
 
-            <input type="date" class="form-control" placeholder="Expense Date" ng-model="vm.expenseData.expenseDate">
+                <div class="form-error-message" ng-if="vm.validationResult.categoryId.required">
+                    This field is required!
+                </div>
+
+                <div class="categories-wrapper" ng-if="vm.categoryWindow">
+                    <div class="category-item" ng-repeat="category in vm.categories" ng-click="vm.chooseCategory(category)">
+                        <i class="icon-category icon-cat-sample"></i>
+                        <p>{{category.name}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="text" class="form-control" placeholder="Vendor" ng-model="vm.expenseData.vendor">
+            </div>
+
+            <div class="input-wrapper">
+                <input type="number" class="form-control" placeholder="Amount" ng-model="vm.expenseData.amount">
+
+                <div class="form-error-message" ng-if="vm.validationResult.amount.required">
+                    This field is required!
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="date" class="form-control" placeholder="Expense Date" ng-model="vm.expenseData.expenseDate">
+
+                <div class="form-error-message" ng-if="vm.validationResult.expenseDate.required">
+                    This field is required!
+                </div>
+            </div>
 
             <textarea class="form-control" placeholder="Description" ng-model="vm.expenseData.description"></textarea>
         </div>

@@ -76,6 +76,36 @@
 ::-webkit-scrollbar-thumb {
   background-color: rgba(47, 47, 47, 0.69); }
 
+.form-error-message {
+  color: #dc3333;
+  font-size: 12px;
+  margin: 5px 0px 10px 12px; }
+
+.icon-category {
+  width: 60px;
+  height: 60px;
+  display: block; }
+
+.icon-cat-sample {
+  background: url(/assets/img/cat-icon.png); }
+
+.categories-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-height: 210px;
+  overflow: auto;
+  margin: 15px 0; }
+  .categories-wrapper .category-item {
+    text-align: center;
+    width: 100px;
+    margin: auto;
+    margin-top: 10px; }
+    .categories-wrapper .category-item i {
+      margin: auto;
+      margin-bottom: 5px; }
+
 .navigation {
   height: 100%; }
   .navigation .navigation-panel {
