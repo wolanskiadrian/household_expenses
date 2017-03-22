@@ -9,7 +9,8 @@
 </head>
 <body>
 
-    <div class="navigation left-panel" ng-include="'/app/shared/navigation/navigation.html'"></div>
+    <!--<div class="navigation left-panel" ng-include="'/app/shared/navigation/navigation.html'"></div>-->
+    <left-navigation class="navigation left-panel"></left-navigation>
     <div class="right-panel" style="height: 100%;" ng-view></div>
 
     <script src="assets/libs/jquery/jquery-3.1.1.min.js"></script>
@@ -41,6 +42,9 @@
     <script src="app/components/expense/expense-controller.js"></script>
     <script src="app/components/forgot/forgot-controller.js"></script>
     <script src="app/components/reset-password/reset-password-controller.js"></script>
+
+    <!--Directives-->
+    <script src="app/directives/left-navigation/left-navigation.js"></script>
 
     <!--Modals-->
     <script src="app/shared/modals/add-new-expense-modal/add-new-expense-modal-controller.js"></script>

@@ -122,7 +122,7 @@ function DashboardController($window, $location, $q, AuthFactory, ModalService, 
     }
 
     init();
-    
+
     vm.logout = function () {
         AuthFactory.isLoggedIn = false;
         delete $window.sessionStorage.token;
