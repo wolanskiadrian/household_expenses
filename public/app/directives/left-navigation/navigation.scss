@@ -8,3 +8,15 @@
   }
 }
 
+@media (max-width: 768px) {
+  .navigation {
+    height: 80px;
+
+    .navigation-panel {
+      background: $background-gray;
+      color: $font-white;
+      height: 80px;
+    }
+  }
+}
+

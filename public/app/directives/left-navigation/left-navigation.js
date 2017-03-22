@@ -2,9 +2,9 @@ angular.module('hhsApp')
     .directive('leftNavigation', leftNavigation)
     function leftNavigation () {
 
-    leftNavigationController.$inject = ['$window', '$location'];
+    leftNavigationController.$inject = ['$window', '$location', 'AuthFactory'];
 
-        function leftNavigationController ($window, $location){
+        function leftNavigationController ($window, $location, AuthFactory){
             var vm = this;
 
             vm.logout = function () {

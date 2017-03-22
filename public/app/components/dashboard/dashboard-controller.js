@@ -2,9 +2,9 @@ var MOUNTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', '
 
 angular.module('hhsApp').controller('DashboardController', DashboardController);
 
-DashboardController.$inject = ['$window', '$location', '$q', 'AuthFactory', 'ModalService', 'DashboardService', 'ExpenseService'];
+DashboardController.$inject = ['$rootScope','$window', '$location', '$q', 'AuthFactory', 'ModalService', 'DashboardService', 'ExpenseService'];
 
-function DashboardController($window, $location, $q, AuthFactory, ModalService, DashboardService, ExpenseService) {
+function DashboardController($rootScope,$window, $location, $q, AuthFactory, ModalService, DashboardService, ExpenseService) {
     var vm = this;
     vm.user = JSON.parse($window.sessionStorage.getItem('userData'));
     vm.expenses = [];

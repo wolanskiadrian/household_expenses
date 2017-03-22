@@ -34,6 +34,14 @@
         min-width: 150px;
       }
     }
+
+    &__add-button {
+      display: inline-block;
+    }
+
+    &__add-button-mobile {
+      display: none;
+    }
   }
 
   .dashboard-main {
@@ -98,5 +106,42 @@
 
   &__category-info {
 
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-configuration-view {
+    max-height: none;
+    overflow-y: visible;
+
+    .dashboard-header {
+      height: 60px;
+      padding: 0;
+      justify-content: space-around;
+
+      &__title {
+        display: none;
+      }
+
+      &__filterbox {
+        display: inline-flex;
+
+        select {
+          margin-right: 20px;
+        }
+
+        .month-select {
+          min-width: 120px;
+        }
+      }
+
+      &__add-button {
+        display: none;
+      }
+
+      &__add-button-mobile {
+        display: inline-block;
+      }
+    }
   }
 }

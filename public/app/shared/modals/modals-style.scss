@@ -32,3 +32,11 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .modal {
+    &__box {
+      width: 350px;
+    }
+  }
+}

@@ -8,8 +8,11 @@
             <select class="form-control" ng-model="vm.selectedYear" ng-options="year for year in vm.yearsList" ng-change="vm.filterExp()">
             </select>
         </div>
-        <div class="">
+        <div class="dashboard-header__add-button">
             <button class="btn btn-primary" type="button" ng-click="vm.showAddNewExpenseModal()">Add New Expense</button>
+        </div>
+        <div class="dashboard-header__add-button-mobile">
+            <button class="btn btn-primary" type="button" ng-click="vm.showAddNewExpenseModal()">+</button>
         </div>
     </div>
 
@@ -61,7 +64,7 @@
         <div class="dashboard-main__empty-info" ng-if="vm.filteredExpenses.length === 0">There is no expenses.</div>
     </div>
 
-    <!--<button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>-->
+    <button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
     <button class="btn btn-primary" type="button" ng-click="vm.userProfile()">User profile</button>
     <!--will be condensed on other pages-->
     <!--showed on the right side-->

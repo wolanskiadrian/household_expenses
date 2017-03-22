@@ -109,6 +109,17 @@ $border-light-gray: #e4e4dc;
   margin-left: 200px;
 }
 
+@media (max-width: 768px) {
+  .left-panel {
+    width: 100%;
+    position: relative;
+  }
+
+  .right-panel {
+    margin-left: 0px;
+  }
+}
+
 //scrollbar
 
 ::-webkit-scrollbar-track

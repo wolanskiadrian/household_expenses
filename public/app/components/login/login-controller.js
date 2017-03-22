@@ -6,13 +6,13 @@ function LoginController($location, $window, $timeout, AuthFactory, LoginService
     var vm = this;
     vm.errorMessage = null;
 
-    vm.isLoggedIn = function () {
-        if(AuthFactory.isLoggedIn) {
-            return true;
-        } else {
-            return false;
+    function init() {
+        if($window.sessionStorage.token) {
+            $location.path('/dashboard');
         }
-    };
+    }
+
+    init();
 
     vm.login = function () {
         if(vm.username && vm.password) {
@@ -23,7 +23,6 @@ function LoginController($location, $window, $timeout, AuthFactory, LoginService
                         $window.sessionStorage.userData = JSON.stringify(res.data.user);
                         AuthFactory.isLoggedIn = true;
                         vm.errorMessage = null;
-
                         $location.path('/dashboard');
                     } else {
                         vm.errorMessage = res.data.message;

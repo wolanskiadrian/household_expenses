@@ -73,10 +73,22 @@ function config($routeProvider, $httpProvider, $locationProvider) {
 }
 
 function run($rootScope, $location, $window, AuthFactory) {
+    if($window.sessionStorage.token) {
+        $rootScope.isLoggedIn = true;
+    } else {
+        $rootScope.isLoggedIn = false;
+    }
+
     $rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
         if(nextRoute.access !== undefined && nextRoute.access.restricted && !$window.sessionStorage.token && !AuthFactory.isLoggedIn) {
             event.preventDefault();
             $location.path('#/login');
+        } else {
+            if($window.sessionStorage.token) {
+                $rootScope.isLoggedIn = true;
+            } else {
+                $rootScope.isLoggedIn = false;
+            }
         }
     })
 }
