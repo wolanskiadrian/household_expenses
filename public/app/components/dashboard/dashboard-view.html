@@ -3,7 +3,7 @@
     <div class="dashboard-header">
         <h2 class="dashboard-header__title">Expenses</h2>
         <div class="dashboard-header__filterbox">
-            <select class="form-control month-select" ng-model="vm.selectedMonth" ng-options="month for month in vm.monthsList" ng-change="vm.filterExp()">
+            <select class="form-control month-select" ng-model="vm.selectedMonth" ng-options="month.Name for month in vm.monthsList" ng-change="vm.filterExp()">
             </select>
             <select class="form-control" ng-model="vm.selectedYear" ng-options="year for year in vm.yearsList" ng-change="vm.filterExp()">
             </select>
