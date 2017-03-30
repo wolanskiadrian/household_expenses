@@ -2,19 +2,19 @@
 
 var MONTHS =
     [
-        {"Id" : 0, "Name" : "All"},
-        {"Id" : 1, "Name" : "January"},
-        {"Id" : 2, "Name" : "February"},
-        {"Id" : 3, "Name" : "March"},
-        {"Id" : 4, "Name" : "April"},
-        {"Id" : 5, "Name" : "May"},
-        {"Id" : 6, "Name" : "June"},
-        {"Id" : 7, "Name" : "July"},
-        {"Id" : 8, "Name" : "August"},
-        {"Id" : 9, "Name" : "September"},
-        {"Id" : 10, "Name" : "October"},
-        {"Id" : 11, "Name" : "November"},
-        {"Id" : 12, "Name" : "December"}
+        {"Id" : 0, "Name" : "January"},
+        {"Id" : 1, "Name" : "February"},
+        {"Id" : 2, "Name" : "March"},
+        {"Id" : 3, "Name" : "April"},
+        {"Id" : 4, "Name" : "May"},
+        {"Id" : 5, "Name" : "June"},
+        {"Id" : 6, "Name" : "July"},
+        {"Id" : 7, "Name" : "August"},
+        {"Id" : 8, "Name" : "September"},
+        {"Id" : 9, "Name" : "October"},
+        {"Id" : 10, "Name" : "November"},
+        {"Id" : 11, "Name" : "December"},
+        {"Id" : 12, "Name" : "Show All"}
     ]
 
 
@@ -76,6 +76,7 @@ function DashboardController($rootScope, $window, $location, $q, AuthFactory, Mo
         }
 
         function checkMonth(e) {
+            console.log(e);
             var eMonthIndex = new Date(e.expenseDate).getMonth();
             var eMonth = MONTHS[eMonthIndex];
             if(eMonth === vm.selectedMonth) {
