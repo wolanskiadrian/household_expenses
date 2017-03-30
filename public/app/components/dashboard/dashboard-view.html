@@ -3,7 +3,7 @@
     <div class="dashboard-header">
         <h2 class="dashboard-header__title">Expenses</h2>
         <div class="dashboard-header__filterbox">
-            <select class="form-control month-select" ng-model="vm.selectedMonth" ng-options="month for month in vm.mountsList" ng-change="vm.filterExp()">
+            <select class="form-control month-select" ng-model="vm.selectedMonth" ng-options="month for month in vm.monthsList" ng-change="vm.filterExp()">
             </select>
             <select class="form-control" ng-model="vm.selectedYear" ng-options="year for year in vm.yearsList" ng-change="vm.filterExp()">
             </select>
@@ -64,8 +64,8 @@
         <div class="dashboard-main__empty-info" ng-if="vm.filteredExpenses.length === 0">There is no expenses.</div>
     </div>
 
-    <button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
-    <button class="btn btn-primary" type="button" ng-click="vm.userProfile()">User profile</button>
+    <!--<button class="btn btn-primary" type="button" ng-click="vm.logout()">Logout</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.userProfile()">User profile</button>-->
     <!--will be condensed on other pages-->
     <!--showed on the right side-->
 </div>

@@ -1,14 +1,32 @@
-var MOUNTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+// var MONTHS = ['All', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+var MONTHS =
+    [
+        {"Id" : 0, "Name" : "All"},
+        {"Id" : 1, "Name" : "January"},
+        {"Id" : 2, "Name" : "February"},
+        {"Id" : 3, "Name" : "March"},
+        {"Id" : 4, "Name" : "April"},
+        {"Id" : 5, "Name" : "May"},
+        {"Id" : 6, "Name" : "June"},
+        {"Id" : 7, "Name" : "July"},
+        {"Id" : 8, "Name" : "August"},
+        {"Id" : 9, "Name" : "September"},
+        {"Id" : 10, "Name" : "October"},
+        {"Id" : 11, "Name" : "November"},
+        {"Id" : 12, "Name" : "December"}
+    ]
+
 
 angular.module('hhsApp').controller('DashboardController', DashboardController);
 
 DashboardController.$inject = ['$rootScope','$window', '$location', '$q', 'AuthFactory', 'ModalService', 'DashboardService', 'ExpenseService'];
 
-function DashboardController($rootScope,$window, $location, $q, AuthFactory, ModalService, DashboardService, ExpenseService) {
+function DashboardController($rootScope, $window, $location, $q, AuthFactory, ModalService, DashboardService, ExpenseService) {
     var vm = this;
     vm.user = JSON.parse($window.sessionStorage.getItem('userData'));
     vm.expenses = [];
-    vm.mountsList = MOUNTHS;
+    vm.monthsList = MONTHS;
     vm.yearsList = [];
     vm.categoriesInMonth = [];
 
@@ -17,7 +35,7 @@ function DashboardController($rootScope,$window, $location, $q, AuthFactory, Mod
         var currentMonth = todayDate.getMonth();
         var currentYear = todayDate.getFullYear();
 
-        vm.selectedMonth = MOUNTHS[currentMonth];
+        vm.selectedMonth = MONTHS[currentMonth];
         vm.selectedYear = currentYear;
 
         filterExpenses();
@@ -59,7 +77,7 @@ function DashboardController($rootScope,$window, $location, $q, AuthFactory, Mod
 
         function checkMonth(e) {
             var eMonthIndex = new Date(e.expenseDate).getMonth();
-            var eMonth = MOUNTHS[eMonthIndex];
+            var eMonth = MONTHS[eMonthIndex];
             if(eMonth === vm.selectedMonth) {
                 return true;
             }

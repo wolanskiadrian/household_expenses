@@ -1,10 +1,14 @@
 <div class="navigation-panel">
     <ul class="nav-main nav-list">
-        <li>Dashboard</li>
-        <li>Transactions</li>
-        <li>Overview</li>
-        <li>Budgets</li>
-        <li>Settings</li>
-        <li ng-click="vm.logout()">Logout</li>
+        <li ng-repeat="navItem in vm.navigationItems">
+            <a ng-href="{{navItem.Url}}">
+                {{navItem.Name}}
+            </a>
+        </li>
+        <li>
+            <a ng-href="#" ng-click="vm.logout()">
+                No more wasting money
+            </a>
+        </li>
     </ul>
 </div>
