@@ -79,7 +79,7 @@ module.exports.get = function (req, res) {
             if(err) {
                 console.log(err);
                 res.status(500).json(err);
-            } else if(!expense) {
+            } else if(!category) {
                 console.log('Category is not exist.');
                 res.status(500).json({
                     message: 'Category is not exist.'
