@@ -124,18 +124,23 @@ module.exports.delete = function (req, res) {
     var categoryId = req.params.categoryId;
 
     Category
-        .findByIdAndRemove(categoryId)
+        .findById(categoryId)
         .exec(function (err, category) {
             if(err) {
                 res
                     .status(404)
                     .json(err);
             } else {
-                res
-                    .status(204)
-                    .json({
-                        message: 'Category deleted'
-                    });
+                category.isActive = false;
+
+                category.save(function (err, categoryUpdated) {
+                    if(err) {
+                        console.log(err);
+                        res.status(500).json(err);
+                    } else {
+                        res.status(204).json({});
+                    }
+                });
             }
         });
 

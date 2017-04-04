@@ -43,10 +43,10 @@ module.exports.edit = function (req, res) {
             } else {
                 expense.categoryId = req.body.categoryId;
                 expense.amount = req.body.amount;
-                expense.description = req.body.description;
-                expense.vendor = req.body.vendor;
                 expense.expenseDate = req.body.expenseDate;
-                
+                if(req.body.description) expense.description = req.body.description;
+                if(req.body.vendor) expense.vendor = req.body.vendor;
+
                 expense.save(function (err, expenseUpdated) {
                     if(err) {
                         console.log(err);
