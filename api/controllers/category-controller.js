@@ -24,6 +24,8 @@ module.exports.addByUser = function (req, res) {
     var icon = req.body.icon;
     var userId = req.params.userId;
 
+    console.log(name);
+
     Category.create({
         name: name,
         icon: icon,
